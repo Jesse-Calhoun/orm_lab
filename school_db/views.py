@@ -302,8 +302,8 @@ def problem_six(request):
   student_count = 0
   for student in students:
     student_count += 1
-  #Student.objects.filter(id=student_count).update(gpa=2.5)
-  new_student = Student.objects.get(id=student_count).update(gpa=0)
+  Student.objects.filter(id=student_count).update(gpa=2.5)
+  new_student = Student.objects.get(id=student_count).
   print(f'''Id: {new_student.id}
 Full Name: {new_student.first_name} {new_student.last_name}
 GPA: {new_student.gpa}''')
