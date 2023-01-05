@@ -98,8 +98,9 @@ SELECT `school_db_student`.`id`,
 # Find all instructors hired prior to 2010
 # Order by hire date ascending
 # Print out the instructor's full name and hire date to the terminal
-import datetime
+
 def problem_two(request):
+  import datetime
   instructors_before_2010 = Instructor.objects.filter(hire_date__lt= datetime.date(2010,1,1)).order_by('hire_date')
   for instructor in instructors_before_2010:
     print(f'Instuctor Name:{instructor.first_name}{instructor.last_name} Hire Date:{instructor.hire_date}')
@@ -144,8 +145,16 @@ SELECT `school_db_instructor`.`id`,
 # Print the instructors name and courses that he belongs to in the terminal
 # (Do not hard code his name in the print)
 def problem_three(request):
+  instructor2 = Instructor.objects.get(id=2)
+  
+  courses = Course.objects.all()
+  print(f'''Instuctor Name:{instructor2.first_name}{instructor2.last_name} 
+Courses:''')
+  for course in courses:
+    if course.instructor == instructor2:
+      print(f'''  -{course.name}''')
 
-    return complete(request)
+  return complete(request)
 
 
 # Supporting Query Method Documentation:
