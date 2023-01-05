@@ -303,7 +303,7 @@ def problem_six(request):
   for student in students:
     student_count += 1
   Student.objects.filter(id=student_count).update(gpa=2.5)
-  new_student = Student.objects.get(id=student_count).
+  new_student = Student.objects.get(id=student_count)
   print(f'''Id: {new_student.id}
 Full Name: {new_student.first_name} {new_student.last_name}
 GPA: {new_student.gpa}''')
@@ -354,16 +354,20 @@ LIMIT 21
 # Delete the student that you have created and updated
 # Check your MySQL Workbench to confirm the student is no longer in the table!
 def problem_seven(request):
-
+  students = Student.objects.all()
+  student_count = 0
+  for student in students:
+    student_count += 1
     # Make sure to set this equal to the primary key of the row you just created!
-    student_id = 11
+  student_id = student_count
+  Student.objects.filter(id=student_id).delete()
 
-    try:
-        student = Student.objects.get(pk=student_id)
-    except ObjectDoesNotExist:
-        print('Great! It failed and couldnt find the object because we deleted it!')
+  try:
+      student = Student.objects.get(pk=student_id)
+  except ObjectDoesNotExist:
+      print('Great! It failed and couldnt find the object because we deleted it!')
 
-    return complete(request)
+  return complete(request)
 
 
 # Supporting Query Method Documentation:
